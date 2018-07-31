@@ -1,0 +1,34 @@
+{
+  "name": "steamregionalpricechecker",
+  "version": "2.0.0",
+  "description": "The Steam Regional Price Checker API is the service powering Steam Regional Prices and runs on NodeJS. Pass in a Steam game details and it will return its cost across multiple regions.",
+  "main": "server.js",
+  "author": "Michael Raffaele <michael@mraffaele.com> (http://github.com/mraffaele)",
+  "homepage": "https://github.com/mraffaele/Steam-Regional-Price-Checker",
+  "repository": "https://github.com/mraffaele/Steam-Regional-Price-Checker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mraffaele/Steam-Regional-Price-Checker/issues"
+  },
+  "keywords": [
+    "steam",
+    "steam-api",
+    "steam-prices",
+    "node",
+    "node-js",
+    "nodejs",
+    "gaming",
+    "mongodb",
+    "mongo",
+    "api"
+  ],
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "mongodb": "^3.1.0-beta4",
+    "superagent": "^3.8.3"
+  },
+  "devDependencies": {}
+}
