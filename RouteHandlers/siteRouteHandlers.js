@@ -46,7 +46,7 @@ routes.documentation = (req, res) => {
   Responder.stdSuccess(
     {
       title: "Steam Regional Price Checker",
-      version: "2.0",
+      version: "2.0.0",
       api: routes
     },
     res
