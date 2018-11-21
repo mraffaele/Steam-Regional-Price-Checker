@@ -7,7 +7,7 @@ It enables you to pass in Steam game details and it will return its cost across 
 
 | Country | Steam Currency |
 | --- | --- |
-| Australia | USD |
+| Australia | AUD |
 | United States | USD |
 | Europe | EUR |
 | United Kingdom | GPB |

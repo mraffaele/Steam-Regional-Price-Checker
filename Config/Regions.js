@@ -2,7 +2,7 @@ const Regions = [
   {
     code: "au",
     steamCode: "au",
-    currency: "usd"
+    currency: "aud"
   },
   {
     code: "us",
