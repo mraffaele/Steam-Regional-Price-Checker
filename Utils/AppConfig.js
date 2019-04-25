@@ -13,7 +13,8 @@ const configItems = [
   "MONGO_PORT",
   "MONGO_COLLECTION_APPS",
   "MONGO_COLLECTION_CURRENCIES",
-  "USE_SAMPLE_DATA"
+  "USE_SAMPLE_DATA",
+  "CURRENCY_API_KEY"
 ];
 const strippedConfig = {};
 const missingConfigItems = configItems.filter(item => {

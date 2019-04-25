@@ -49,7 +49,7 @@ const fetchRegion = (region, base) => {
       return resolve(payload);
     }
 
-    Request.get(`https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=y`).then(
+    Request.get(`https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=y&apiKey=${Config.CURRENCY_API_KEY}`).then(
       response => {
         if (response.status !== 200) {
           reject(Notices.RATESFAIL);
@@ -97,7 +97,7 @@ const update = base => {
 
         resolve(format(flattened, base));
       })
-      .catch(error => {
+      .catch(error => {        
         reject(Notices.CURRENCYUPDATEFAIL);
       });
   });
