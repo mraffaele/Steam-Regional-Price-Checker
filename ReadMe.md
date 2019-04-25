@@ -76,6 +76,7 @@ A `SAMPLE.env` file is provided. You should copy this and save it as `.env` in t
 |MONGO_COLLECTION_APPS|apps|MongoDB apps collection name
 |MONGO_COLLECTION_CURRENCIES|currencies|MongoDB currency collection name
 |USE_SAMPLE_DATA|false|Use sample data
+|CURRENCY_API_KEY|XXXXXXXXXXXXXXXXXXXX|Currency conversion service API KEY
 
 
 ### Running The App
