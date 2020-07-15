@@ -10,7 +10,7 @@ if (!IsConfigValid) {
   app.get("*", (req, res) => Responder.stdError("Please check env config.", res));
 } else {
   //Home
-  app.get("/", siteRouteHandlers.notFound);
+  app.get("/", siteRouteHandlers.home);
   app.get("/docs/", siteRouteHandlers.documentation);
 
   //Legacy

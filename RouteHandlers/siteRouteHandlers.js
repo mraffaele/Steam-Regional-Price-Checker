@@ -6,6 +6,16 @@ routes.notFound = (req, res) => {
   Responder.stdError("404: Page Not Found", res);
 };
 
+routes.home = (req,res) => {
+  Responder.stdSuccess(
+    {
+      title: "Steam Regional Price Checker",
+      version: "2.0.3",
+    },
+    res
+  );
+}
+
 routes.documentation = (req, res) => {
   const routes = [
     {
@@ -46,7 +56,7 @@ routes.documentation = (req, res) => {
   Responder.stdSuccess(
     {
       title: "Steam Regional Price Checker",
-      version: "2.0.0",
+      version: "2.0.3",
       api: routes
     },
     res
