@@ -1,6 +1,6 @@
 {
   "name": "steamregionalpricechecker",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "The Steam Regional Price Checker API is the service powering Steam Regional Prices and runs on NodeJS. Pass in a Steam game details and it will return its cost across multiple regions.",
   "main": "server.js",
   "author": "Michael Raffaele <michael@mraffaele.com> (http://github.com/mraffaele)",

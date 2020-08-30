@@ -8,16 +8,16 @@ const configItems = [
   "CACHE_TIME",
   "MONGO_DB",
   "MONGO_DOMAIN",
+  "MONGO_OPTS",
   "MONGO_USERNAME",
   "MONGO_PASSWORD",
-  "MONGO_PORT",
   "MONGO_COLLECTION_APPS",
   "MONGO_COLLECTION_CURRENCIES",
   "USE_SAMPLE_DATA",
   "CURRENCY_API_KEY"
 ];
 const strippedConfig = {};
-const missingConfigItems = configItems.filter(item => {
+const missingConfigItems = configItems.filter((item) => {
   if (typeof userConfig[item] === "undefined") {
     return true;
   }
