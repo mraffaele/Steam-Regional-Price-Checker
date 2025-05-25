@@ -9,7 +9,7 @@ const { Config } = require("../Utils/AppConfig");
 const UseSampleData = Config.USE_SAMPLE_DATA === "true" || false;
 const defaultOptions = { appType: "", appId: "" };
 
-const GetSteamApp = options => {
+const GetSteamApp = (options) => {
   const cacheDb = new CacheDb(Config.MONGO_COLLECTION_APPS);
   const { appType, appId } = Object.assign(defaultOptions, options);
 
@@ -24,10 +24,10 @@ const GetSteamApp = options => {
 
     cacheDb
       .check({ steamId: appId })
-      .then(cache => {
+      .then((cache) => {
         if (cache.isExpired) {
           fetch(appId, appType)
-            .then(payload => {
+            .then((payload) => {
               const docId = cache.data ? cache.data._id : null;
 
               //Maintain existing hits
@@ -38,7 +38,7 @@ const GetSteamApp = options => {
               cacheDb.save(payload, docId);
               return resolve(payload);
             })
-            .catch(err => {
+            .catch((err) => {
               reject(err);
             });
         } else {
@@ -48,18 +48,18 @@ const GetSteamApp = options => {
           return resolve(payload);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         return reject(err);
       });
   });
 };
 
-const isAppTypeValid = appType => {
+const isAppTypeValid = (appType) => {
   const type = appType.toLowerCase();
   return type === "app" || type === "sub";
 };
 
-const isAppIdValid = appId => {
+const isAppIdValid = (appId) => {
   return !isNaN(appId);
 };
 
@@ -72,19 +72,15 @@ const parseResponse = (response, region, appType) => {
   const payload = { ...SteamAppRegionModel };
 
   //Base Price
-  let price = $("div.game_area_purchase_game")
-    .eq(0)
-    .find("div.game_purchase_price.price");
+  let price = $("div.game_area_purchase_game").eq(0).find("div.game_purchase_price.price");
 
   //Sale Price
   if (!price.length) {
-    price = $("div.game_area_purchase_game")
-      .eq(0)
-      .find("div.discount_final_price");
+    price = $("div.game_area_purchase_game").eq(0).find("div.discount_final_price");
   }
 
   //Clean Price
-  const priceClean = price => {
+  const priceClean = (price) => {
     if (region.code === "ru") {
       return price.replace(new RegExp(/[^0-9]+/g), "");
     } else if (region.currency === "eur") {
@@ -103,7 +99,7 @@ const parseResponse = (response, region, appType) => {
     appImage = $("img.package_header");
     appName = $("h2.pageheader");
   } else {
-    appName = $("div.apphub_AppName");
+    appName = $("div.apphub_AppName").first();
     appImage = $("img.game_header_image_full");
   }
 
@@ -130,9 +126,9 @@ const fetchRegion = (region, appType, appUrl) => {
       .set("cookie", "birthtime=440000000;lastagecheckage=1-January-1986;mature_content=1")
       .get(`${appUrl}?cc=${region.code}`)
       .then(
-        response => {
+        (response) => {
           //404s redirect to home
-          const isHome = response.redirects.filter(item => item.toLowerCase() === "https://store.steampowered.com/");
+          const isHome = response.redirects.filter((item) => item.toLowerCase() === "https://store.steampowered.com/");
 
           if (response.status !== 200 || isHome.length) {
             reject(Notices.STEAMFAIL);
@@ -140,7 +136,7 @@ const fetchRegion = (region, appType, appUrl) => {
             resolve(parseResponse(response.text, region, appType));
           }
         },
-        error => {
+        (error) => {
           reject(`${Notices.STEAMFAIL} [${region.code}]`);
         }
       );
@@ -157,10 +153,10 @@ const fetch = (appId, appType) => {
     payload.url = appUrl;
     payload.timestamp = Math.floor(Date.now() / 1000);
 
-    Promise.all(Regions.map(region => fetchRegion(region, appType, appUrl)))
-      .then(regions => {
+    Promise.all(Regions.map((region) => fetchRegion(region, appType, appUrl)))
+      .then((regions) => {
         if (regions.length) {
-          payload.regions = regions.map(region => {
+          payload.regions = regions.map((region) => {
             return {
               regionCode: region.regionCode,
               price: region.price
@@ -174,7 +170,7 @@ const fetch = (appId, appType) => {
           reject(Notices.LOOKUPGENERALFAIL);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });

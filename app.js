@@ -1,10 +1,17 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const siteRouteHandlers = require("./RouteHandlers/siteRouteHandlers");
 const legacyRouteHandlers = require("./RouteHandlers/legacyRouteHandlers");
 const apiRouteHandlers = require("./RouteHandlers/apiRouteHandlers");
 const { IsConfigValid } = require("./Utils/AppConfig");
 const Responder = require("./Utils/Responder");
+
+app.use(
+  cors({
+    origin: "https://steamregionalprices.com"
+  })
+);
 
 if (!IsConfigValid) {
   app.get("*", (req, res) => Responder.stdError("Please check env config.", res));
